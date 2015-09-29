@@ -8,7 +8,8 @@ var version = require('./package.json').version;
 fs.mkdirpSync(BABEL_CACHE_TEMP_DIR);
 
 module.exports = {
-  devtool: 'eval',
+  devtool: '#inline-source-map',
+
   entry: [
     'webpack-hot-middleware/client',
     './src/index'
