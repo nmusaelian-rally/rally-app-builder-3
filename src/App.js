@@ -32,7 +32,7 @@ export class App extends Component {
     return (
       <div>
         <Counter increment={1} color={NICE} />
-        <Counter increment={5} color={SUPER_NICE} />
+        <Counter increment={1} color={SUPER_NICE} />
       </div>
     );
   }
