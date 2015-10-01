@@ -1,9 +1,8 @@
 import { Immutable, Rally, React} from 'fiesta';
-// import React from 'react';
 
 const { DataTable } = Rally.component;
 
-export default class MyApp extends React.Component {
+export default class MyApp extends Rally.App {
   constructor(config) {
     super(config);
 
