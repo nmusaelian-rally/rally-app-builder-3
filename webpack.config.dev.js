@@ -50,6 +50,22 @@ module.exports = {
     {
       test: /\.png/,
       loader: 'url?limit=10000&minetype=image/png'
+    },
+    {
+      test: /\.woff$/,
+      loader: "url?limit=10000&minetype=application/font-woff"
+    },
+    {
+      test: /\.ttf$/,
+      loader: "file"
+    },
+    {
+      test: /\.eot$/,
+      loader: "file"
+    },
+    {
+      test: /\.svg$/,
+      loader: "file"
     }]
   }
 };

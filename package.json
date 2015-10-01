@@ -43,6 +43,7 @@
     "eslint-plugin-react": "^2.3.0",
     "express": "^4.13.3",
     "fiesta": "*",
+    "file-loader": "^0.8.1",
     "fs-extra": "^0.22.1",
     "react-transform-catch-errors": "^1.0.0",
     "react-transform-hmr": "^1.0.0",
