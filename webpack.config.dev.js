@@ -33,6 +33,23 @@ module.exports = {
       loader: 'babel-loader?stage=1&optional=runtime&loose=es6.classes&cacheDirectory=' + BABEL_CACHE_TEMP_DIR + '&cacheIdentifier=' + version,
       devLoader: 'babel-loader?stage=1&optional=runtime&loose=es6.classes&cacheDirectory=' + BABEL_CACHE_TEMP_DIR + '&cacheIdentifier=' + version,
       exclude: /node_modules\/(?!sombrero)/
+    },
+    {
+      test: /\.scss$/,
+      exclude: /.*sombrero.*\.scss$/,
+      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version", "ie >= 9"]}!sass-loader'
+    },
+    {
+      test: /.*sombrero.*\.scss$/,
+      loader: 'css!sass'
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css'
+    },
+    {
+      test: /\.png/,
+      loader: 'url?limit=10000&minetype=image/png'
     }]
   }
 };

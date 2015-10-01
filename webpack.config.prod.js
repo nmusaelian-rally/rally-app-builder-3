@@ -29,6 +29,23 @@ module.exports = {
       test: /\.js$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
+    },
+    {
+      test: /\.scss$/,
+      exclude: /.*sombrero.*\.scss$/,
+      loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version", "ie >= 9"]}!sass-loader'
+    },
+    {
+      test: /.*sombrero.*\.scss$/,
+      loader: 'css!sass'
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css'
+    },
+    {
+      test: /\.png/,
+      loader: 'url?limit=10000&minetype=image/png'
     }]
   }
 };

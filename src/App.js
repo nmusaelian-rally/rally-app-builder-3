@@ -1,40 +1,41 @@
-import React, { Component } from 'react';
-import { NICE, SUPER_NICE } from './colors';
+import { Immutable, Rally, React} from 'fiesta';
+// import React from 'react';
 
-class Counter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0 };
-    this.interval = setInterval(() => this.tick(), 1000);
-    console.log(NICE);
-  }
+const { DataTable } = Rally.component;
 
-  tick() {
-    this.setState({
-      counter: this.state.counter + this.props.increment
+export default class MyApp extends React.Component {
+  constructor(config) {
+    super(config);
+
+    this.api = new Rally.AlmApi({
+      scope: this.props.context.scope
     });
-  }
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
+    this.state = {
+      data: null
+    };
+
+    this._getData();
   }
 
   render() {
-    return (
-      <h1 style={{ color: this.props.color }}>
-        Counter ({this.props.increment}): {this.state.counter}
-      </h1>
-    );
+    if (this.state.data) {
+      return (
+        <DataTable items={ Immutable.fromJS(this.state.data) }>
+          <DataTable.Column dataIndex="FormattedID">FormattedID</DataTable.Column>
+          <DataTable.Column dataIndex="Name">Name</DataTable.Column>
+        </DataTable>
+      );
+    } else {
+      return <p>No data yet</p>;
+    }
   }
-}
 
-export class App extends Component {
-  render() {
-    return (
-      <div>
-        <Counter increment={1} color={NICE} />
-        <Counter increment={1} color={SUPER_NICE} />
-      </div>
-    );
+  _getData() {
+    this.api.query('/defect', { fetch: ['Name', 'FormattedID'] }).then((data) => {
+      this.setState({
+        data: data.Results
+      })
+    });
   }
 }
