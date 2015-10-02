@@ -21,6 +21,11 @@ module.exports = {
   entry: [
     './src/index'
   ],
+
+  externals: {
+    'fiesta' : 'Fiesta'
+  },
+
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -42,7 +47,9 @@ module.exports = {
       templateContent: function(templateParams, compilation) {
         var code = compilation.assets['bundle.js'].children[0]._value;
 
-        return ['<!DOCTYPE html> <html><title>My Rally App</title> <head> <script type="text/javascript">',
+        return ['<!DOCTYPE html><html><title>My Rally App</title><head>',
+                '<script type="text/javascript" src="http://localhost:8000/dist/js/fiesta.min.js"></script>',
+                '<script type="text/javascript">',
                 code,
                 '</script><meta http-equiv="Content-type" content="text/html; charset=utf-8"/>  </head> <body> </body> </html>'].join('');
       }

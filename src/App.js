@@ -7,7 +7,8 @@ export default class MyApp extends Rally.App {
     super(config);
 
     this.api = new Rally.AlmApi({
-      scope: this.props.context.scope
+      scope: this.props.context.scope,
+      server: 'http://localhost:7001'
     });
 
     this.state = {
